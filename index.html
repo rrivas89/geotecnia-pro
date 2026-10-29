@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Geotecnia Pro</title>
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  
+  <!-- LIBRERÍAS DE GENERACIÓN PDF (Vitales para Fase 6 y Fase 8) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <style>
+    body { background-color: #0F172A; color: white; -webkit-tap-highlight-color: transparent; margin: 0; font-family: sans-serif; }
+    input, select, textarea { background: transparent; border: none; outline: none; color: white; width: 100%; -webkit-appearance: none; color-scheme: dark;}
+    select { background-color: #1E293B; }
+    input::placeholder, textarea::placeholder { color: #475569; }
+    .bg-fondo { background-color: #0F172A !important; } .bg-superficie { background-color: #1E293B !important; } .bg-acento { background-color: #38BDF8 !important; }
+    .text-acento { color: #38BDF8 !important; } .text-etiqueta { color: #64748B !important; }
+
+    /* ESTILOS EXCLUSIVOS PARA EL PDF INVISIBLE */
+    #pdf_template { display: none; background: white; color: black; padding: 20px; font-family: 'Helvetica', sans-serif; font-size: 11px; }
+    .pdf-meta { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+    .pdf-meta th { text-align: left; font-weight: bold; width: 15%; padding: 4px; font-size: 11px; }
+    .pdf-meta td { border-bottom: 1px dashed #999; width: 35%; padding: 4px; font-size: 12px; }
+    .pdf-table { width: 100%; border-collapse: collapse; }
+    .pdf-table th, .pdf-table td { border: 1px solid #444; padding: 6px; text-align: center; }
+    .pdf-table th { background-color: #f2f2f2; font-size: 10px; font-weight: bold; text-transform: uppercase; }
+  </style>
+</head>
+<body class="pb-8 min-h-screen flex flex-col">
+  
+  <div id="app" class="flex-1 flex flex-col"></div>
+  
+  <!-- LIENZO INVISIBLE PARA EL PDF DEL SONDEO -->
+  <div id="pdf_template">
+    <h1 style="text-align: center; font-size: 18px; text-transform: uppercase; margin-bottom: 15px; color: #111; letter-spacing: 1px;">Registro de Campo - Perforación</h1>
+    <table class="pdf-meta">
+      <tr><th>Proyecto:</th><td id="pdf_pry_nom">-</td><th>Fecha:</th><td id="pdf_fecha">-</td></tr>
+      <tr><th>Sondeo:</th><td id="pdf_snd_nom">-</td><th>Prof. Estimada:</th><td id="pdf_snd_prof">-</td></tr>
+    </table>
+    <table class="pdf-table">
+      <thead><tr><th>Prof. (m)</th><th>Muestreo</th><th>N°</th><th>SPT 1</th><th>SPT 2</th><th>SPT 3</th><th>N.F.</th><th>Recup. (cm)</th><th style="width: 35%;">Descripción Visual</th></tr></thead>
+      <tbody id="pdf_body_table"></tbody>
+    </table>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
